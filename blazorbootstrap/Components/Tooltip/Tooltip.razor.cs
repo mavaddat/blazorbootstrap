@@ -51,7 +51,10 @@ public partial class Tooltip : BlazorBootstrapComponentBase
 
         await base.OnInitializedAsync();
 
-        ExecuteAfterRender(async () => { await JS.InvokeVoidAsync("window.blazorBootstrap.tooltip.initialize", ElementRef); });
+        ExecuteAfterRender(async () =>
+        {
+            await JS.InvokeVoidAsync("window.blazorBootstrap.tooltip.initialize", ElementRef, objRef);
+        });
     }
 
     protected override async Task OnParametersSetAsync()
@@ -66,6 +69,28 @@ public partial class Tooltip : BlazorBootstrapComponentBase
                 await JS.InvokeVoidAsync("window.blazorBootstrap.tooltip.update", ElementRef);
             }
     }
+
+    [JSInvokable]
+    public async Task bsHiddenTooltip() => await Hidden.InvokeAsync(new TooltipEventArgs(TooltipMessage.Id, ElementId));
+
+    [JSInvokable]
+    public async Task bsHideTooltip() => await Hiding.InvokeAsync(new TooltipEventArgs(TooltipMessage.Id, ElementId));
+
+    [JSInvokable]
+    public async Task bsShownTooltip() => await Shown.InvokeAsync(new TooltipEventArgs(TooltipMessage.Id, ElementId));
+
+    [JSInvokable]
+    public async Task bsShowTooltip() => await Showing.InvokeAsync(new TooltipEventArgs(TooltipMessage.Id, ElementId));
+
+    /// <summary>
+    /// Hides an element’s tooltip.
+    /// </summary>
+    public async Task HideAsync() => await JS.InvokeVoidAsync("window.blazorBootstrap.tooltip.hide", ElementId);
+
+    /// <summary>
+    /// Reveals an element’s tooltip.
+    /// </summary>
+    public async Task ShowAsync() => await JS.InvokeVoidAsync("window.blazorBootstrap.tooltip.show", ElementId, objRef);
 
     #endregion
 

@@ -607,8 +607,29 @@ window.blazorBootstrap = {
         }
     },
     tooltip: {
-        initialize: (elementRef) => {
-            bootstrap?.Tooltip?.getOrCreateInstance(elementRef);
+        initialize: (elementRef, dotNetHelper) => {
+            let tooltip = bootstrap?.Tooltip?.getOrCreateInstance(elementRef);
+
+            elementRef.addEventListener('show.bs.tooltip', function () {
+                dotNetHelper.invokeMethodAsync('bsShowTooltip');
+            });
+            elementRef.addEventListener('shown.bs.tooltip', function () {
+                dotNetHelper.invokeMethodAsync('bsShownTooltip');
+            });
+            elementRef.addEventListener('hide.bs.tooltip', function () {
+                dotNetHelper.invokeMethodAsync('bsHideTooltip');
+            });
+            elementRef.addEventListener('hidden.bs.tooltip', function () {
+                dotNetHelper.invokeMethodAsync('bsHiddenTooltip');
+            });
+
+            tooltip.show();
+        },
+        show: (elementRef) => {
+            bootstrap?.Tooltip?.getOrCreateInstance(elementRef)?.show();
+        },
+        hide: (elementRef) => {
+            bootstrap?.Tooltip?.getOrCreateInstance(elementRef)?.hide();
         },
         update: (elementRef) => {
             bootstrap?.Tooltip?.getOrCreateInstance(elementRef)?.update();

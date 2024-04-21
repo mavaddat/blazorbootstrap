@@ -61,8 +61,8 @@ const config = {
                 },
                 items: [
                     { type: 'doc', docId: 'getting-started/blazor-webassembly-net-8', label: 'Docs', position: 'left' },
-                    { to: '/blog', label: 'Blog', position: 'left' },
                     { href: 'https://demos.blazorbootstrap.com', label: 'Demos', position: 'left' },
+                    { to: '/blog', label: 'Blog', position: 'left' },
                     { href: 'https://github.com/vikramlearning/blazorbootstrap', label: 'GitHub', position: 'right', },
                     { href: 'https://twitter.com/blazorbootstrap', label: 'Twitter', position: 'right', },
                 ],
@@ -91,7 +91,7 @@ const config = {
                         items: [
                             { label: 'Issues', href: 'https://github.com/vikramlearning/blazorbootstrap/issues', },
                             { label: 'Discussions', href: 'https://github.com/vikramlearning/blazorbootstrap/discussions', },
-                            //{ label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/blazorbootstrap', },
+                            { label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/blazor-bootstrap', },
                             { label: 'Twitter', href: 'https://twitter.com/blazorbootstrap', },
                         ],
                     },
